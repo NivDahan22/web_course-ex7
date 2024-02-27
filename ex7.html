@@ -11,6 +11,35 @@
             height: 100px;
             cursor: pointer;
             margin: 5px;
+            display: inline-block; /* Make thumbnails inline elements */
+        }
+
+        /* New style for the thumbnail container */
+        .thumbnail-container {
+            text-align: center; /* Center thumbnails horizontally */
+        }
+
+        .selected-image-container {
+            text-align: center; /* Center image horizontally */
+            margin-top: 20px; /* Add some space above the selected image */
+        }
+
+        .selected-image-container img {
+            max-width: 500px; /* Maximum width for the selected image */
+            max-height: 80vh; /* Maximum height to ensure it fits in most screens */
+            margin-top: 20px; /* Space above the image */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content vertically in a column */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center; /* Centering headers */
         }
     </style>
 </head>
@@ -18,15 +47,15 @@
 
     <h1>Image Browser</h1>
 
-    <div>
+    <div class="thumbnail-container">
         <!-- Thumbnails -->
         <img ng-repeat="image in images" ng-src="{{image.thumbnail}}" class="thumbnail" ng-click="selectImage(image.full)">
     </div>
 
-    <div ng-show="selectedImage">
+    <div ng-show="selectedImage" class="selected-image-container">
         <!-- Selected Image -->
         <h2>Selected Image</h2>
-        <img ng-src="{{selectedImage}}" style="max-width: 500px;">
+        <img ng-src="{{selectedImage}}" alt="Selected Image">
     </div>
 
     <script>
@@ -56,31 +85,5 @@
                 };
             }]);
     </script>
- <script>
-    // custom config for the MTW app 
-    const mtwAppConfig = {
-        border: true // app border in the MTW page                    
-    }
-
-    ///////////////////////////////////////////////////////
-    // implement this functions in order to use private API        
-    const sendPrivateApiRequest = async () => {
-        // your code here:
-        // sendRequestToParent({ cat: 'getAssets' })
-    }        
-
-    const acceptPrivateApiResponse = async (data) => {
-        // process received data here:
-        // console.log(data)
-    }
-
-    // use this in order to send on document load
-    document.addEventListener('DOMContentLoaded', () => {
-        // your code here:
-        //sendRequestToParent({ method: 'getAssets' })
-    })
-
-</script>
-<script src="https://morethanwallet.com/appstore/index.js"></script>
 </body>
 </html>
